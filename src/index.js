@@ -1,12 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Redirect, Switch, BrowserRouter as Router, Route} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
-import App from './App';
+import Main from './containers/Main';
+import Trains from './containers/Trains';
 import * as serviceWorker from './serviceWorker';
+import trainReducer from './reducers/trainReducer';
+import { Provider} from 'react-redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
+import thunk from 'redux-thunk';
+import logger from 'redux-logger';
+
+const rootReducer = combineReducers({train: trainReducer});
+const store = createStore(rootReducer, applyMiddleware(logger, thunk))
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store} >
+      <Router>
+        <Switch>
+          <Route exact path='/' component={Main} />
+          <Route path='/trains' component={Trains} />
+          <Route path="*" render={() => <Redirect to='/' />} />
+        </Switch>
+      </Router>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
