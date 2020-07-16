@@ -1,7 +1,10 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    trainList:[]
+    trainList:[],
+    yyyy: Number,
+    mm: Number,
+    dd: Number
 }
 
 const trainReducer = (state = initialState, action) => {
@@ -10,6 +13,13 @@ const trainReducer = (state = initialState, action) => {
             return {
                 ...state,
                 trainList: action.data
+            }
+        case actionTypes.SET_DATE :
+            return {
+                ...state,
+                yyyy: action.data.year,
+                mm: action.data.month,
+                dd: action.data.day
             }
         default:
             return state;

@@ -1,6 +1,7 @@
 import React from 'react';
 import * as actions from '../actions/trainAction';
 import {connect} from 'react-redux';
+import './App.css';
 
 class Main extends React.Component {
   constructor(props){
@@ -23,6 +24,15 @@ class Main extends React.Component {
 
   handleSubmit(event){
     const {from, to, date} = this.state;
+    let Indate = new Date(date);
+    let dd = Indate.getDate();
+    let mm = Indate.getMonth()+1;
+    if(mm<10){
+      mm='0'+mm;
+    }
+    let yyyy = Indate.getFullYear();
+    console.log(dd+""+mm+""+yyyy)
+    this.props.setDate({year: yyyy, month: mm, day: dd});
     this.props.searchTrains("/api/trains/findTrains", {from:from, to:to}, this.props.history)
     event.preventDefault();
   }
@@ -30,18 +40,26 @@ class Main extends React.Component {
   fetchDate(){
     let date = new Date()
     console.log(date)
-    let dd = date.getDate();
-    let mm = date.getMonth()+1;
+    let dd = date.getDate()+1;
+    let mm = 12;
     let yyyy = date.getFullYear();
+    let Maxyyyy = yyyy;
     if(dd<10){
       dd='0'+dd;
     }
     if(mm<10){
       mm='0'+mm
     }
-    console.log(date.getTime());
+    let Maxmm = Number(mm)+3;
+    if(Maxmm>12){
+      Maxmm-=12;
+      Maxyyyy+=1
+    }
+    if(Maxmm < 10){
+      Maxmm = '0'+Maxmm;
+    }
     const minDate = yyyy+'-'+mm+'-'+dd;
-    const maxDate = yyyy+'-'+(Number(mm)+3)+'-'+dd;
+    const maxDate = Maxyyyy+'-'+Maxmm+'-'+dd;
     this.setState({currDate : minDate, maxDate : maxDate});
   }
 
@@ -90,7 +108,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return{
-    searchTrains : (url, body, history) => dispatch(actions.getTrains(url, body, history))
+    searchTrains : (url, body, history) => dispatch(actions.getTrains(url, body, history)),
+    setDate: (obj) => dispatch(actions.setDate(obj))
   }
 }
 

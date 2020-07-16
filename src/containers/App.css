@@ -1,0 +1,8 @@
+.row{
+    border: 5px solid black;
+    padding: 20px 0;
+}
+
+.list-inline-item{
+    margin-left: 50px;
+}

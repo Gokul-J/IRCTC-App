@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": "false"}));
 app.use("/", express.static(path.join(__dirname, './build')));
 app.use("/api/trains",trainRoute);
-trainDB();
+// trainDB();
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

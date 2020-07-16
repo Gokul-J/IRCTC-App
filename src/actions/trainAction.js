@@ -13,3 +13,10 @@ export const getTrains = (url, obj, history) => {
         })
     }
 }
+
+export const setDate = (obj) => {
+    return {
+        type: actionTypes.SET_DATE,
+        data: obj
+    }
+}

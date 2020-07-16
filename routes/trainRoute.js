@@ -10,8 +10,20 @@ Router.post("/findTrains", (req,res) => {
             console.log(err);
         }
         else{
-            console.log(trainsFound);
+            // console.log(trainsFound);
             res.send(trainsFound);
+        }
+    })
+})
+
+Router.get("/book/:id", (req, res) => {
+    console.log(req.params);
+    Train.findById(req.params.id, (err, train) => {
+        if(err){
+            console.log(err);
+        }
+        else{
+            res.send(train);
         }
     })
 })

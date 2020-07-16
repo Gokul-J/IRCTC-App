@@ -5,6 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import Main from './containers/Main';
 import Trains from './containers/Trains';
+import Booking from './containers/Booking';
+import Login from './containers/Login';
+import Register from './containers/Register';
 import * as serviceWorker from './serviceWorker';
 import trainReducer from './reducers/trainReducer';
 import { Provider} from 'react-redux';
@@ -21,7 +24,10 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path='/' component={Main} />
+          <Route path='/login' component={Login} />
+          <Route path='/register' component={Register} />
           <Route path='/trains' component={Trains} />
+          <Route path='/bookTickets' component={Booking} />
           <Route path="*" render={() => <Redirect to='/' />} />
         </Switch>
       </Router>
