@@ -1,4 +1,6 @@
 import React from 'react';
+import * as authActions from '../actions/authActions';
+import { connect } from 'react-redux';
 
 class Login extends React.Component {
     constructor(props){
@@ -12,12 +14,28 @@ class Login extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        // If logged in and user navigates to Login page, should redirect them to dashboard
+        console.log(this.props.isAuthenticated)
+        if (this.props.isAuthenticated) {
+          this.props.history.push("/dashboard");
+        }
+      }
+    
+      componentWillReceiveProps(nextProps) {
+        if (nextProps.isAuthenticated) {
+          this.props.history.push("/dashboard");
+        }
+      }
+
     handleChange(event){
         this.setState({[event.target.name] : event.target.value})
     }
 
     handleSubmit(event){
         console.log(this.state);
+        const {email, password} = this.state;
+        this.props.loginUser({email: email, password: password});
         event.preventDefault();
     }
 
@@ -35,4 +53,16 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+const mapStateToProps = state => {
+    console.log(state);
+    return ({
+    isAuthenticated : state.auth.isAuthenticated,
+    user : state.auth.user
+    })
+}
+
+const mapDispatchToProps = dispatch => ({
+    loginUser : (userData) => dispatch(authActions.loginUser(userData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

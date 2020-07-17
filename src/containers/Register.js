@@ -1,4 +1,6 @@
 import React from 'react';
+import * as authActions from '../actions/authActions';
+import { connect } from 'react-redux';
 
 class Register extends React.Component{
     constructor(props){
@@ -13,12 +15,21 @@ class Register extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        // If logged in and user navigates to Register page, should redirect them to dashboard
+        if (this.props.isAuthenticated) {
+          this.props.history.push("/dashboard");
+        }
+      }
+
     handleChange(event){
         this.setState({[event.target.name] : event.target.value})
     }
 
     handleSubmit(event){
         console.log(this.state);
+        const {name, email, password} = this.state;
+        this.props.registerUser({name: name, email: email, password: password}, this.props.history)
         event.preventDefault();
     }
 
@@ -37,4 +48,16 @@ class Register extends React.Component{
     }
 }
 
-export default Register;
+const mapStateToProps = state => {
+    console.log(state);
+    return ({
+        isAuthenticated : state.auth.isAuthenticated,
+        user : state.auth.user
+    })
+}
+
+const mapDispatchToProps = dispatch => ({
+    registerUser : (userData, history) => dispatch(authActions.registerUser(userData, history))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
