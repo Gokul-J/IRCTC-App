@@ -1,6 +1,5 @@
 import React from 'react';
-import * as actions from '../actions/trainAction';
-import {connect} from 'react-redux';
+import Navbar from '../components/Navbar';
 import './App.css';
 
 class Main extends React.Component {
@@ -31,15 +30,17 @@ class Main extends React.Component {
       mm='0'+mm;
     }
     let yyyy = Indate.getFullYear();
-    console.log(dd+""+mm+""+yyyy)
-    this.props.setDate({year: yyyy, month: mm, day: dd});
-    this.props.searchTrains("/api/trains/findTrains", {from:from, to:to}, this.props.history)
+    // console.log(dd+""+mm+""+yyyy)
+    localStorage.setItem("date", dd);
+    localStorage.setItem("month", mm);
+    localStorage.setItem("year", yyyy);
+    this.props.history.push("/trains", {from: from, to: to})
     event.preventDefault();
   }
 
   fetchDate(){
     let date = new Date()
-    console.log(date)
+    // console.log(date)
     let dd = date.getDate()+1;
     let mm = 12;
     let yyyy = date.getFullYear();
@@ -65,7 +66,10 @@ class Main extends React.Component {
 
   render() {
     return (
-      <div className=" container text-center">
+        <div>
+        <Navbar />
+        <div className=" container text-center">
+
         <h1>Book Your Ticket</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
@@ -95,22 +99,9 @@ class Main extends React.Component {
           <input type="submit" className="btn btn-primary" />
         </form>
       </div>
+      </div>
     )
   }
 }
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return{
-    trainList : state.train.trainList
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return{
-    searchTrains : (url, body, history) => dispatch(actions.getTrains(url, body, history)),
-    setDate: (obj) => dispatch(actions.setDate(obj))
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default Main;

@@ -1,52 +1,75 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 class Trains extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      trainList : []
+    }
+  }
   
   handleClick(id, event){
-    this.props.history.push("/bookTickets", {id: id})
+    console.log(this.props.isAuthenticated);
+    if(!this.props.isAuthenticated){
+      this.props.history.push("/login");
+    }
+    else{
+      this.props.history.push("/bookTickets", {id: id});
+
+    }
+    event.preventDefault();
+  }
+
+  componentDidMount(){
+    // console.log(this.props.location)
+    axios.post("/api/trains/findTrains", {from:this.props.location.state.from, to:this.props.location.state.to})
+      .then(response => {
+        this.setState({trainList: response.data});
+      })
   }
 
   render() {
-    const { trainList, dd, mm, yyyy } = this.props;
+    const { trainList } = this.state;
     let SN = 1;
-    let date = dd;
-    let month = mm;
-    let year = yyyy;
+    let date = localStorage.date;
+    let month = localStorage.month;
+    let year = localStorage.year;
     let table = [];
-    // for (let i = 0; i < 1; i++) {
-      trainList.forEach(train => {
-        if(date>30){
-          date=1;
-          if(month!==12){
-            month+=1
-          }
-          else{
-            month = 1;
-            year+=1;
-          }
+    trainList.forEach(train => {
+      if (date > 30) {
+        date = 1;
+        if (month !== 12) {
+          month += 1
         }
-        table.push(
-          <tr key={SN}>
-            <th scope="row">{SN++}</th>
-            <td>{train._id}</td>
-            <td>{train.name}</td>
-            <td>{train.from}</td>
-            <td>{train.to}</td>
-            <td>{(date<10?'0'+date:date)+"-"+(month<10?'0'+month:month)+"-"+year}</td>
-            <td>{train.dTime}</td>
-            <td>{(date+train.aDate)+"-"+(month<10?'0'+month:month)+"-"+year}</td>
-            <td>{train.aTime}</td>
-            <td>₹ {train.cost}</td>
-            <td>{Math.floor(Math.random() * 1024)}/1024</td>
-            <td><a className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</a></td>
-          </tr>
-        )
-      })
-    // }
+        else {
+          month = 1;
+          year += 1;
+        }
+      }
+      table.push(
+        <tr key={SN}>
+          <th scope="row">{SN++}</th>
+          <td>{train._id}</td>
+          <td>{train.name}</td>
+          <td>{train.from}</td>
+          <td>{train.to}</td>
+          <td>{(date < 10 ? '0' + date : date) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
+          <td>{train.dTime}</td>
+          <td>{(Number(date) + train.aDate) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
+          <td>{train.aTime}</td>
+          <td>₹ {train.cost}</td>
+          <td>{Math.floor(Math.random() * 1024)}/1024</td>
+          <td><a className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</a></td>
+        </tr>
+      )
+    })
     return (
       <div className="text-center">
+        <Navbar />
         <h1>Available Trains</h1>
         <table className="table">
           <thead className="thead-dark">
@@ -74,19 +97,11 @@ class Trains extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    trainList: state.train.trainList,
-    dd: state.train.dd,
-    mm: state.train.mm,
-    yyyy: state.train.yyyy
+const mapStateToProps = state => {
+  console.log(state);
+  return{
+      isAuthenticated: state.auth.isAuthenticated
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Trains);
+export default connect(mapStateToProps)(Trains);

@@ -8,9 +8,8 @@ import Trains from './containers/Trains';
 import Booking from './containers/Booking';
 import Login from './containers/Login';
 import Register from './containers/Register';
-import dashboard from './containers/dashboard';
+import Payment from './containers/Payment';
 import * as serviceWorker from './serviceWorker';
-import trainReducer from './reducers/trainReducer';
 import authReducer from './reducers/authReducer';
 import { Provider} from 'react-redux';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
@@ -19,9 +18,9 @@ import logger from 'redux-logger';
 
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
-import {setCurrentUser} from './actions/authActions';
+import {setCurrentUser, logoutUser} from './actions/authActions';
 
-const rootReducer = combineReducers({train: trainReducer, auth: authReducer});
+const rootReducer = combineReducers({auth: authReducer});
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
 
@@ -47,13 +46,13 @@ if (localStorage.jwtToken) {
   store.dispatch(setCurrentUser(decoded));
   // Check for expired token
   const currentTime = Date.now() / 1000; // to get in milliseconds
-  // if (decoded.exp < currentTime) {
-  //   // Logout user
-  //   store.dispatch(logoutUser());
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logoutUser());
 
-  //   // Redirect to login
-  //   window.location.href = "./login";
-  // }
+    // Redirect to login
+    window.location.href = "./";
+  }
 }
 
 ReactDOM.render(
@@ -66,7 +65,7 @@ ReactDOM.render(
           <Route path='/register' component={Register} />
           <Route path='/trains' component={Trains} />
           <Route path='/bookTickets' component={Booking} />
-          <Route path='/dashboard' component={dashboard} />
+          <Route path='/payment' component={Payment} />
           <Route path="*" render={() => <Redirect to='/' />} />
         </Switch>
       </Router>

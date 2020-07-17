@@ -34,7 +34,7 @@ Router.post("/register", (req,res) => {
 
 Router.post("/login", (req, res) => {
     User.findOne({email: req.body.email}, (err, user) => {
-        console.log(user);
+        // console.log(user.id);
         if(!user){
             console.log("User not Found");
         }
@@ -42,11 +42,11 @@ Router.post("/login", (req, res) => {
             bcrypt.compare(req.body.password, user.password, (err, match) => {
                 if(match){
                     const payload = {
-                        id: user._id,
+                        id: user.id,
                         name: user.name
                     };
 
-                    jwt.sign(payload, "secret", { expiresIn: 31556926}, (err,token) => {
+                    jwt.sign(payload, "secret", { expiresIn: 10}, (err,token) => {
                         res.json({
                             success: true,
                             token: "Bearer" + token

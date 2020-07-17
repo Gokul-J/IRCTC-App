@@ -16,15 +16,15 @@ class Login extends React.Component {
 
     componentDidMount() {
         // If logged in and user navigates to Login page, should redirect them to dashboard
-        console.log(this.props.isAuthenticated)
+        // console.log(this.props.isAuthenticated)
         if (this.props.isAuthenticated) {
-          this.props.history.push("/dashboard");
+          this.props.history.push("/");
         }
       }
     
       componentWillReceiveProps(nextProps) {
         if (nextProps.isAuthenticated) {
-          this.props.history.push("/dashboard");
+          this.props.history.goBack();
         }
       }
 
@@ -33,7 +33,7 @@ class Login extends React.Component {
     }
 
     handleSubmit(event){
-        console.log(this.state);
+        // console.log(this.state);
         const {email, password} = this.state;
         this.props.loginUser({email: email, password: password});
         event.preventDefault();
@@ -54,7 +54,7 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
+    // console.log(state);
     return ({
     isAuthenticated : state.auth.isAuthenticated,
     user : state.auth.user
