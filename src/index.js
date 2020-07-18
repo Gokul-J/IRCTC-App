@@ -16,25 +16,13 @@ import { Provider} from 'react-redux';
 import {createStore, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
-
-import axios from 'axios';
+import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import {setCurrentUser, logoutUser} from './actions/authActions';
 
 const rootReducer = combineReducers({auth: authReducer});
 const store = createStore(rootReducer, applyMiddleware(logger, thunk));
 
-
-
-const setAuthToken = token => {
-  if (token) {
-    // Apply authorization token to every request if logged in
-    axios.defaults.headers.common["Authorization"] = token;
-  } else {
-    // Delete auth header
-    delete axios.defaults.headers.common["Authorization"];
-  }
-};
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {

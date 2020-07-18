@@ -27,7 +27,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '/build', 'index.html'));
   });
 
-//SCHEDULE FUNCTION FOR TICKETS
+//SCHEDULE FUNCTION FOR TICKETS EXPIRY
 const deleteTickets = schedule.scheduleJob("0 0 * * *", ()=> {
   console.log("Schedule is Called...")
   const date = new Date()
