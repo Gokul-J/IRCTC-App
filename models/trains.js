@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 
 const trainSchema = new mongoose.Schema({
+    pnr: Number,
     from: String,
     to: String,
     name: String,

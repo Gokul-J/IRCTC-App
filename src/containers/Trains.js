@@ -25,11 +25,15 @@ class Trains extends React.Component {
   }
 
   componentDidMount(){
-    // console.log(this.props.location)
-    axios.post("/api/trains/findTrains", {from:this.props.location.state.from, to:this.props.location.state.to})
-      .then(response => {
-        this.setState({trainList: response.data});
-      })
+    if(this.props.location.state){
+      axios.post("/api/trains/findTrains", {from:this.props.location.state.from, to:this.props.location.state.to})
+        .then(response => {
+          this.setState({trainList: response.data});
+        })
+    }
+    else{
+      this.props.history.goBack();
+    }
   }
 
   render() {
@@ -53,7 +57,7 @@ class Trains extends React.Component {
       table.push(
         <tr key={SN}>
           <th scope="row">{SN++}</th>
-          <td>{train._id}</td>
+          <td>{train.pnr}</td>
           <td>{train.name}</td>
           <td>{train.from}</td>
           <td>{train.to}</td>
@@ -63,7 +67,7 @@ class Trains extends React.Component {
           <td>{train.aTime}</td>
           <td>₹ {train.cost}</td>
           <td>{Math.floor(Math.random() * 1024)}/1024</td>
-          <td><a className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</a></td>
+          <td><p className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</p></td>
         </tr>
       )
     })
@@ -98,7 +102,7 @@ class Trains extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return{
       isAuthenticated: state.auth.isAuthenticated
   }

@@ -1,6 +1,7 @@
-.row{
+.train-details{
     border: 5px solid black;
     padding: 20px 0;
+    margin-bottom: 20px;
 }
 
 .list-inline-item{

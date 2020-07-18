@@ -26,15 +26,15 @@ class Main extends React.Component {
     let Indate = new Date(date);
     let dd = Indate.getDate();
     let mm = Indate.getMonth()+1;
-    if(mm<10){
-      mm='0'+mm;
-    }
+    // if(mm<10){
+    //   mm='0'+mm;
+    // }
     let yyyy = Indate.getFullYear();
     // console.log(dd+""+mm+""+yyyy)
     localStorage.setItem("date", dd);
     localStorage.setItem("month", mm);
     localStorage.setItem("year", yyyy);
-    this.props.history.push("/trains", {from: from, to: to})
+    this.props.history.push("/trains", {from: from, to: to, view: true})
     event.preventDefault();
   }
 
@@ -42,7 +42,7 @@ class Main extends React.Component {
     let date = new Date()
     // console.log(date)
     let dd = date.getDate()+1;
-    let mm = 12;
+    let mm = date.getMonth()+1;
     let yyyy = date.getFullYear();
     let Maxyyyy = yyyy;
     if(dd<10){

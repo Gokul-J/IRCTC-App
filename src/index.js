@@ -9,6 +9,7 @@ import Booking from './containers/Booking';
 import Login from './containers/Login';
 import Register from './containers/Register';
 import Payment from './containers/Payment';
+import Tickets from './containers/Tickets';
 import * as serviceWorker from './serviceWorker';
 import authReducer from './reducers/authReducer';
 import { Provider} from 'react-redux';
@@ -65,6 +66,7 @@ ReactDOM.render(
           <Route path='/register' component={Register} />
           <Route path='/trains' component={Trains} />
           <Route path='/bookTickets' component={Booking} />
+          <Route path='/viewTickets' component={Tickets} />
           <Route path='/payment' component={Payment} />
           <Route path="*" render={() => <Redirect to='/' />} />
         </Switch>
