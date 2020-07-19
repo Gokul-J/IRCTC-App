@@ -27,7 +27,6 @@ class ViewTickets extends React.Component {
   render() {
     // console.log(this.state.tickets);
     const { tickets } = this.state;
-    let view;
     if(tickets.length ===0 ){
       return <p>No Tickets Booked</p>
     }

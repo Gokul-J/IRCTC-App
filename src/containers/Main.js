@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import './App.css';
 
 class Main extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       from: "",
@@ -17,15 +17,15 @@ class Main extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event){
-    this.setState({[event.target.name] : event.target.value})  
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value })
   }
 
-  handleSubmit(event){
-    const {from, to, date} = this.state;
+  handleSubmit(event) {
+    const { from, to, date } = this.state;
     let Indate = new Date(date);
     let dd = Indate.getDate();
-    let mm = Indate.getMonth()+1;
+    let mm = Indate.getMonth() + 1;
     // if(mm<10){
     //   mm='0'+mm;
     // }
@@ -34,71 +34,79 @@ class Main extends React.Component {
     localStorage.setItem("date", dd);
     localStorage.setItem("month", mm);
     localStorage.setItem("year", yyyy);
-    this.props.history.push("/trains", {from: from, to: to, view: true})
+    this.props.history.push("/trains", { from: from, to: to, view: true })
     event.preventDefault();
   }
 
-  fetchDate(){
+  fetchDate() {
     let date = new Date()
     // console.log(date)
-    let dd = date.getDate()+1;
-    let mm = date.getMonth()+1;
+    let dd = date.getDate() + 1;
+    let mm = date.getMonth() + 1;
     let yyyy = date.getFullYear();
     let Maxyyyy = yyyy;
-    if(dd<10){
-      dd='0'+dd;
+    if (dd < 10) {
+      dd = '0' + dd;
     }
-    if(mm<10){
-      mm='0'+mm
+    if (mm < 10) {
+      mm = '0' + mm
     }
-    let Maxmm = Number(mm)+3;
-    if(Maxmm>12){
-      Maxmm-=12;
-      Maxyyyy+=1
+    let Maxmm = Number(mm) + 3;
+    if (Maxmm > 12) {
+      Maxmm -= 12;
+      Maxyyyy += 1
     }
-    if(Maxmm < 10){
-      Maxmm = '0'+Maxmm;
+    if (Maxmm < 10) {
+      Maxmm = '0' + Maxmm;
     }
-    const minDate = yyyy+'-'+mm+'-'+dd;
-    const maxDate = Maxyyyy+'-'+Maxmm+'-'+dd;
-    this.setState({currDate : minDate, maxDate : maxDate});
+    const minDate = yyyy + '-' + mm + '-' + dd;
+    const maxDate = Maxyyyy + '-' + Maxmm + '-' + dd;
+    this.setState({ currDate: minDate, maxDate: maxDate });
   }
 
   render() {
     return (
-        <div>
+      <div className="">
         <Navbar />
-        <div className=" container text-center">
-
-        <h1>Book Your Ticket</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
-            <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="from" value={this.state.from} onChange={this.handleChange} required>
-              <option value="">FROM...</option>
-              <option value="CHE">Chennai</option>
-              <option value="MUM">Mumbai</option>
-              <option value="DEL">Delhi</option>
-              <option value="KOL">Kolkata</option>
-            </select>
+        <div className="main-image"></div>
+        <div className="row mainContent">
+          <div className=" mainForm col-md-6 order-2 order-md-1">
+            <div className=" container text-center">
+              <h1><div className="book">Book</div> Your Ticket</h1>
+              <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
+                  <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
+                  <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="from" value={this.state.from} onChange={this.handleChange} required>
+                    <option value="">FROM...</option>
+                    <option value="CHE">Chennai</option>
+                    <option value="MUM">Mumbai</option>
+                    <option value="DEL">Delhi</option>
+                    <option value="KOL">Kolkata</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
+                  <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="to" value={this.state.to} onChange={this.handleChange} required>
+                    <option value="">TO...</option>
+                    <option value="CHE">Chennai</option>
+                    <option value="MUM">Mumbai</option>
+                    <option value="DEL">Delhi</option>
+                    <option value="KOL">Kolkata</option>
+                  </select>
+                </div>
+                <div className="form-group">
+                  <label className="sr-only" htmlFor="date">Date</label>
+                  <input type="date" id="date" name="date" defaultValue={this.state.date} onClick={this.fetchDate.bind(this)} onChange={this.handleChange} min={this.state.currDate} max={this.state.maxDate} required></input>
+                </div>
+                <input type="submit" className="btn btn-primary" />
+              </form>
+            </div>
           </div>
-          <div className="form-group">
-            <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
-            <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="to" value={this.state.to} onChange={this.handleChange} required>
-              <option value="">TO...</option>
-              <option value="CHE">Chennai</option>
-              <option value="MUM">Mumbai</option>
-              <option value="DEL">Delhi</option>
-              <option value="KOL">Kolkata</option>
-            </select>
+          <div className="mainText col-md-6 order-1 order-md-2">
+            <h1 className="main-h1">Indian Railways</h1>
+            <p className="main-p">Safety | Security | Punctuality</p>
           </div>
-          <div className="form-group">
-            <label className="sr-only" htmlFor="date">Date</label>
-            <input type="date" id="date" name="date" defaultValue={this.state.date} onClick={this.fetchDate.bind(this)} onChange={this.handleChange} min={this.state.currDate} max={this.state.maxDate} required></input>
-          </div>
-          <input type="submit" className="btn btn-primary" />
-        </form>
-      </div>
+        </div>
       </div>
     )
   }

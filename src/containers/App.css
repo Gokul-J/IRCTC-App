@@ -1,3 +1,60 @@
+.main-image{
+  background-image: url("../assets/imgs/38876843180_93def7de72_c.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  filter: blur(2px);
+}
+
+.mainContent{
+  position: absolute;
+  top: 30%;
+  left: 12.5%;
+  text-align: center;
+  width: 50%;
+}
+
+.mainForm{
+  background-color: rgb(0, 0, 0, 0.4);
+  color: white;
+  border: 5px solid rgb(255, 255, 255);
+  width: 50%;
+  padding: 40px 0;
+}
+
+.custom-select {
+  width: 70%;
+  display: inline-block;
+}
+
+.mainText{
+  color: white;
+  top: 70%;
+  left: 40%;
+  text-align: center;
+  text-shadow: 3px 0 3px black,
+              2px 0 3px black;
+  padding: 10% 0;
+}
+
+.book{
+  font-size: 50px;
+}
+
+.main-h1{
+  font-weight: bold;
+  font-size: 70px;
+  width: 500px;
+}
+
+.main-p{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+
+
+
 .train-details{
     border: 3px solid black;
     padding: 20px 0;
