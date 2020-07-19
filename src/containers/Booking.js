@@ -66,7 +66,7 @@ class Booking extends React.Component {
   }
 
   componentDidMount() {
-    if (this.props.isAuthenticated) {
+    if (this.props.isAuthenticated && this.props.location.state) {
       axios.get("/api/trains/book/" + this.props.location.state.id)
         .then(response => {
           this.setState({ train: response.data })

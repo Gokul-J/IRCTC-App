@@ -5,7 +5,7 @@ import axios from 'axios';
 class Payment extends React.Component {
   constructor(props) {
     super(props);
-    if(!this.props.isAuthenticated){
+    if(!this.props.isAuthenticated || !this.props.location.state){
       this.props.history.goBack();
     }
     this.state = {
