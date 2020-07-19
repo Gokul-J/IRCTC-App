@@ -19,7 +19,7 @@ class Payment extends React.Component {
   handleSubmit(event) {
     axios.post("/api/ticket/create", this.state)
       .then(res => {
-        this.props.history.push("/viewTickets");
+        this.props.history.push("/viewTickets", {flash: true});
       })
     event.preventDefault();
   }
@@ -62,9 +62,9 @@ class Payment extends React.Component {
 const mapStateToProps = state => {
   console.log(state);
   return ({
-  isAuthenticated: state.auth.isAuthenticated,
-  user: state.auth.user
-})
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
+  })
 }
 
 export default connect(mapStateToProps)(Payment);

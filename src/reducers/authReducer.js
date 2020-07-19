@@ -5,7 +5,9 @@ const isEmpty = require("is-empty");
 const initialState = {
   isAuthenticated: false,
   user: {},
-  loading: false
+  loading: false,
+  flashMessage: "",
+  flash: false
 }
 
 export default function (state = initialState, action) {
@@ -20,6 +22,19 @@ export default function (state = initialState, action) {
       return {
         ...state,
         loading: true
+      }
+    case actionTypes.SET_FLASH_MESSAGE :
+      console.log(action);
+      return{
+        ...state,
+        flashMessage: action.payload.flashMessage,
+        flash:true
+      }
+    case actionTypes.RESET_FLASH_MESSAGE :
+      return{
+        ...state,
+        flashMessage: "",
+        flash: false
       }
     default:
       return state;

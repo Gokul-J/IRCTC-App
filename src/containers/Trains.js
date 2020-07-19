@@ -55,19 +55,19 @@ class Trains extends React.Component {
         }
       }
       table.push(
-        <tr key={SN}>
-          <th scope="row">{SN++}</th>
-          <td>{train.pnr}</td>
-          <td>{train.name}</td>
-          <td>{train.from}</td>
-          <td>{train.to}</td>
-          <td>{(date < 10 ? '0' + date : date) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
-          <td>{train.dTime}</td>
-          <td>{(Number(date) + train.aDate) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
-          <td>{train.aTime}</td>
-          <td>₹ {train.cost}</td>
-          <td>{Math.floor(Math.random() * 1024)}/1024</td>
-          <td><p className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</p></td>
+        <tr className="tr" key={SN}>
+          <th className="th" scope="row">{SN++}</th>
+          <td className="td">{train.pnr}</td>
+          <td className="td">{train.name}</td>
+          <td className="td">{train.from}</td>
+          <td className="td">{train.to}</td>
+          <td className="td">{(date < 10 ? '0' + date : date) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
+          <td className="td">{train.dTime}</td>
+          <td className="td">{(Number(date) + train.aDate) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
+          <td className="td">{train.aTime}</td>
+          <td className="td">₹ {train.cost}</td>
+          <td className="td">{Math.floor(Math.random() * 1024)}/1024</td>
+          <td className="td"><p className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</p></td>
         </tr>
       )
     })
@@ -75,24 +75,24 @@ class Trains extends React.Component {
       <div className="text-center">
         <Navbar />
         <h1>Available Trains</h1>
-        <table className="table">
-          <thead className="thead-dark">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">PNR</th>
-              <th scope="col">Name</th>
-              <th scope="col">Depature</th>
-              <th scope="col">Destination</th>
-              <th scope="col">Depature Date</th>
-              <th scope="col">Depature Time</th>
-              <th scope="col">Arrival Date</th>
-              <th scope="col">Arrival Time</th>
-              <th scope="col">Cost</th>
-              <th scope="col">Seats Available</th>
-              <th scope="Booking">Book Now</th>
+        <table className="table train-table">
+          <thead className="thead thead-dark">
+            <tr className="tr">
+              <th className="th" scope="col">#</th>
+              <th className="th" scope="col">PNR</th>
+              <th className="th" scope="col">Train Name</th>
+              <th className="th" scope="col">Depature</th>
+              <th className="th" scope="col">Destination</th>
+              <th className="th" scope="col">Depature Date</th>
+              <th className="th" scope="col">Depature Time</th>
+              <th className="th" scope="col">Arrival Date</th>
+              <th className="th" scope="col">Arrival Time</th>
+              <th className="th" scope="col">Cost</th>
+              <th className="th" scope="col">Seats Available</th>
+              <th className="th" scope="Booking">Book Now</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody">
             {table}
           </tbody>
         </table>

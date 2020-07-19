@@ -37,7 +37,7 @@ Router.post("/create", (req, res) => {
             }
             else {
               console.log(user);
-              res.send("Success")
+              res.send({flashMessage: "Payment Successful"})
             }
           })
         }

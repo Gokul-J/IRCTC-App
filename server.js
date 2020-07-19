@@ -10,22 +10,33 @@ const express = require("express"),
     ticketRoute = require("./routes/ticketRoute"),
     Ticket = require("./models/ticket"),
     User = require("./models/user"),
-    schedule = require("node-schedule");
+    schedule = require("node-schedule"),
+    keys = require("./config/keys"),
+    passport = require("passport"),
+    passportConfig = require("./config/passport");
 
-mongoose.connect("mongodb://localhost/irctc-app", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
 app.use('/', express.static(path.join(__dirname, './build')));
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({"extended": "false"}));
 app.use("/", express.static(path.join(__dirname, './build')));
-app.use("/api/trains",trainRoute);
+
+//PASSPORT CONFIG
+app.use(passport.initialize());
+passportConfig(passport);
+
 app.use("/api/user", userRoute);
-app.use("/api/ticket", ticketRoute);
+app.use("/api/trains",trainRoute);
+app.use("/api/ticket", passport.authenticate('jwt', {session: false}), ticketRoute);
 // trainDB();
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '/build', 'index.html'));
-  });
+  res.sendFile(path.join(__dirname, '/build', 'index.html'));
+});
+
+
+
 
 //SCHEDULE FUNCTION FOR TICKETS EXPIRY
 const deleteTickets = schedule.scheduleJob("0 0 * * *", ()=> {

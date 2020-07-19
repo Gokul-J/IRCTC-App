@@ -11,9 +11,9 @@ class Navbar extends React.Component {
   }
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, flash, flashMessage } = this.props;
 
-    let view;
+    let view, flashMes;
     if (!isAuthenticated) {
       view =
         <div className="navbar-nav ml-auto">
@@ -28,7 +28,15 @@ class Navbar extends React.Component {
           <p className="nav-item mr-sm-3 nav-link" onClick={this.handleLogout.bind(this)}>Logout</p>
         </div>
     }
+
+    if(flash){
+      flashMes= <p>{flashMessage}</p>
+      // setTimeout(() => {
+      //   this.props.resetFlash();
+      // }, 5000);
+    }
     return (
+      <div>
       <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <a className="navbar-brand" href="/">IRCTC</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +52,8 @@ class Navbar extends React.Component {
           </div>
         </div>
       </nav>
+      {flashMes}
+      </div>
     )
   }
 }
@@ -51,13 +61,16 @@ class Navbar extends React.Component {
 const mapStateToProps = state => {
   return {
     user: state.auth.user,
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    flashMessage: state.auth.flashMessage,
+    flash: state.auth.flash
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    logoutUser: (history) => dispatch(authActions.logoutUser(history))
+    logoutUser: (history) => dispatch(authActions.logoutUser(history)),
+    resetFlash: () => dispatch(authActions.resetFlash())
   }
 }
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

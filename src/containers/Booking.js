@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Navbar from '../components/Navbar';
 
 class Booking extends React.Component {
@@ -70,12 +70,12 @@ class Booking extends React.Component {
       axios.get("/api/trains/book/" + this.props.location.state.id)
         .then(response => {
           this.setState({ train: response.data })
-          this.setState({user: this.props.user.id})
+          this.setState({ user: this.props.user.id })
 
           this.genDate();
         })
     }
-    else{
+    else {
       this.props.history.goBack();
     }
   }
@@ -92,8 +92,6 @@ class Booking extends React.Component {
         </div>
       )
     }
-
-    // console.log(this.state)
     return (
       <div>
         <Navbar />
@@ -120,12 +118,33 @@ class Booking extends React.Component {
             <option value="4">4</option>
             <option value="5">5</option>
             <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
           </select>
           <div> Cost: {this.state.ticketCount * train.cost}</div>
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            {input}
-            <input type="submit" className="btn btn-primary" />
-          </form>
+          <div className="train-details">
+            <div className="container">
+              <p>Passenger Details</p>
+              <span>#</span>
+              <span>Name</span>
+              <span>Age</span>
+              <table className="table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                  </tr>
+                </thead>
+              </table>
+              <form onSubmit={this.handleSubmit.bind(this)}>
+                {input}
+                <input type="submit" className="btn btn-primary" />
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     )
@@ -133,7 +152,6 @@ class Booking extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user
