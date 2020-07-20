@@ -16,7 +16,7 @@ const express = require("express"),
     passportConfig = require("./config/passport");
 
 mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
-app.use('/', express.static(path.join(__dirname, './build')));
+// app.use('/', express.static(path.join(__dirname, './build')));
 
 app.use(cors());
 app.use(bodyParser.json());
