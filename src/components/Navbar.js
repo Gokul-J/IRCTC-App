@@ -33,9 +33,9 @@ class Navbar extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot){
     // console.log(this.state)
-    // if(this.props.viewLogin!==p  revProps.viewLogin){
-    //   this.setState({showLogin: true})
-    // }
+    if(this.props.viewLogin!==p  revProps.viewLogin){
+      this.setState({showLogin: true})
+    }
   }
 
   render() {
