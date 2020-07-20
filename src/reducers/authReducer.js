@@ -7,7 +7,8 @@ const initialState = {
   user: {},
   loading: false,
   flashMessage: "",
-  flash: false
+  flash: false,
+  success: false
 }
 
 export default function (state = initialState, action) {
@@ -25,16 +26,28 @@ export default function (state = initialState, action) {
       }
     case actionTypes.SET_FLASH_MESSAGE :
       console.log(action);
-      return{
-        ...state,
-        flashMessage: action.payload.flashMessage,
-        flash:true
+      if(action.payload.success){
+        return{
+          ...state,
+          flashMessage: action.payload.flashMessage,
+          flash:true,
+          success: action.payload.success
+        }
+      }
+      else{
+        return {
+          ...state,
+          flashMessage: action.payload.flashMessage,
+          flash: true,
+          success: action.payload.success
+        }
       }
     case actionTypes.RESET_FLASH_MESSAGE :
       return{
         ...state,
         flashMessage: "",
-        flash: false
+        flash: false,
+        success: false
       }
     default:
       return state;

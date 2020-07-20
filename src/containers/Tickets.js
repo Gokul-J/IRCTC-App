@@ -24,7 +24,7 @@ class Tickets extends React.Component {
   render() {
     let flashMessage;
     if(this.state.flash){
-      flashMessage= <p>Payment Successful</p>
+      flashMessage= <p className="flash text-center bg-success">Payment Successful</p>
       setTimeout(() => {
         this.setState({flash: false})
       }, 1000);
@@ -33,8 +33,8 @@ class Tickets extends React.Component {
       <div>
         <Navbar />
         {flashMessage}
-        <div className="container text-center">
-          <h1>Tickets Page</h1>
+        <div className="text-center">
+          <h1 className="my-4">Tickets Page</h1>
           <ViewTickets {...this.props}/>
         </div>
       </div>

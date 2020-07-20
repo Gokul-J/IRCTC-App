@@ -85,63 +85,54 @@ class Booking extends React.Component {
     let input = []
     for (let i = 1; i <= this.state.ticketCount; i++) {
       input.push(
-        <div key={i}>
-          <span className="mx-3 mb-2">{i}</span>
-          <input className="mx-3 mb-2" type="text" name="name" />
-          <input className="mx-3 mb-2" type="text" name="age" />
+        <div key={i} className="row passenger-input ">
+          <span className=" passenger-num">{i}</span>
+          <input className=" passenger-name" type="text" name="name" required />
+          <input className=" passenger-age" type="Number" min="1" name="age" required />
         </div>
       )
     }
     return (
       <div>
         <Navbar />
-        <div className="container text-center">
+        <div className="booking text-center">
           <h1> Bookings Page</h1>
-          <ul className="list-inline text-left">
-            <div className="row train-details">
-              <li className="list-inline-item col-5">PNR : {train.pnr}</li>
-              <li className="list-inline-item col-5">Name : {train.name}</li>
-              <li className="list-inline-item col-5">From : {train.from}</li>
-              <li className="list-inline-item col-5">To : {train.to}</li>
-              <li className="list-inline-item col-5">Depature Date : {this.state.dDate}</li>
-              <li className="list-inline-item col-5">Arrival Date : {this.state.aDate}</li>
-              <li className="list-inline-item col-5">Depature Time : {train.dTime}</li>
-              <li className="list-inline-item col-5">Arrival Time : {train.aTime}</li>
-              <li className="list-inline-item col-5">Cost : {train.cost}</li>
+          <div className="booking-page">
+            <div className="text-left">
+              <div className="row">
+                <p className="booking-li col-6">PNR : {train.pnr}</p>
+                <p className="booking-li col-6">Name : {train.name}</p>
+                <p className="booking-li col-6">From : {train.from}</p>
+                <p className="booking-li col-6">To : {train.to}</p>
+                <p className="booking-li col-6">Depature : {this.state.dDate}    {train.dTime}</p>
+                <p className="booking-li col-6">Arrival Date : {this.state.aDate}    {train.aTime}</p>
+                {/* <li className="ml-5 col-12">Cost : {train.cost}</li> */}
+              </div>
             </div>
-          </ul>
-          <span>No. Of Tickets : </span>
-          <select defaultValue={this.state.ticketCount} onChange={this.handleChange}>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-          <div> Cost: {this.state.ticketCount * train.cost}</div>
-          <div className="train-details">
-            <div className="container">
-              <p>Passenger Details</p>
-              <span>#</span>
-              <span>Name</span>
-              <span>Age</span>
-              <table className="table">
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                  </tr>
-                </thead>
-              </table>
+            <span>No. Of Tickets : </span>
+            <select defaultValue={this.state.ticketCount} onChange={this.handleChange}>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <div> Cost: {this.state.ticketCount * train.cost}</div>
+          </div>
+          <div className="">
+            <p>Passenger Details</p>
+            <div className="passengers text-left">
+              <span className=" passenger-head-num">#</span>
+              <span className=" passenger-head-name">Name</span>
+              <span className=" passenger-head-age">Age</span>
               <form onSubmit={this.handleSubmit.bind(this)}>
                 {input}
-                <input type="submit" className="btn btn-primary" />
+                <input type="submit" className="btn btn-primary btn-size" />
               </form>
             </div>
           </div>

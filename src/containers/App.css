@@ -1,3 +1,38 @@
+/* FLASH MESSAGE */
+.flash{
+  width: 30%;
+  display: inline-block;
+  position: absolute;
+  z-index: 999;
+  top:10%;
+  left: 35%;
+  padding-top: 7px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 7px;
+}
+
+.nav-item{
+  z-index: 2;
+  margin: 0;
+}
+/* POPUP FORMS */
+.popup{
+  position: fixed;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  color: white;
+  background-color: rgb(0, 0, 0, 0.8);
+}
+
+/* MAIN PAGE STYLES */
 .main-image{
   background-image: url("../assets/imgs/38876843180_93def7de72_c.jpg");
   background-repeat: no-repeat;
@@ -8,43 +43,32 @@
 
 .mainContent{
   position: absolute;
-  top: 30%;
-  left: 12.5%;
+  top: 25%;
+  left: 10%;
+  width: 80%;
   text-align: center;
-  width: 50%;
+  text-shadow: 3px 0 3px black,
+              2px 0 3px black;
 }
 
 .mainForm{
   background-color: rgb(0, 0, 0, 0.4);
   color: white;
   border: 5px solid rgb(255, 255, 255);
-  width: 50%;
+  width: 100%;
   padding: 40px 0;
-}
-
-.custom-select {
-  width: 70%;
-  display: inline-block;
 }
 
 .mainText{
   color: white;
   top: 70%;
-  left: 40%;
   text-align: center;
-  text-shadow: 3px 0 3px black,
-              2px 0 3px black;
   padding: 10% 0;
-}
-
-.book{
-  font-size: 50px;
 }
 
 .main-h1{
   font-weight: bold;
-  font-size: 70px;
-  width: 500px;
+  font-size: 60px;
 }
 
 .main-p{
@@ -52,23 +76,339 @@
   font-size: 25px;
 }
 
-
-
-
-.train-details{
-    border: 3px solid black;
-    padding: 20px 0;
-    margin-bottom: 20px;
+.book-h1{
+  font-family: Poppins;
+  margin-bottom: 30px;
+}
+.book{
+  font-size: 50px;
+  font-family: Questrial;
+  text-transform: uppercase;
 }
 
-.list-inline-item{
-    margin-left: 50px;
+.custom-select {
+  width: 50%;
+  display: inline-block;
+}
+
+#main-submit{
+  font-size: 20px;
+  width: 30%;
+}
+
+/* LOGIN STYLES */
+.form{
+  margin-top: 18%;
+  color:rgb(255, 255, 255);
+  text-shadow: 2px 0px 4px rgb(77, 74, 74);
+}
+
+.form-control{
+  width:20%;
+  margin: 20px 40%;
+  border: 0;
+  color:black;
+  outline: none;
+  border-bottom: 2px solid rgb(77, 74, 74);
+}
+
+.goBack{
+  margin: 0;
+  margin-left: 20px;
+}
+
+.redirect{
+  margin-top: 20px;
+}
+
+.btn-size{
+  margin-bottom: 20px;
+}
+
+/* TRAINS PAGE STYLES */
+.train-container{
+  margin: 5% 5%;
+}
+
+.train-h1{
+  margin-bottom: 30px;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+  border: 1px solid rgb(0, 0, 0, 0.3);
+}
+
+.tr:nth-of-type(2n+0){
+  background-color: rgba(189, 189, 189, 0.3);
+}
+
+.train-booking{
+  border: 3px solid black;
+  width: 60%;
+  margin-left: 20%;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.train-booking li{
+  padding-left: 50px;
+}
+
+.booking{
+  margin-top: 80px;
+}
+
+.booking-page{
+  width: 60%;
+  margin-left: 20%;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.booking-li{
+  padding-left: 20%;
+  font-size: 20px;
+  padding-bottom: 10px;
+}
+
+.passengers{
+  border: 3px solid black;
+  width: 35%;
+  margin-left: 35%;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.passenger-input{
+  margin: 5px 0;
+}
+
+.passenger-head-num{
+  padding-left: 12%;
+  font-weight: bold;
+}
+
+.passenger-head-name{
+  margin-right: 20%;
+  margin-left: 26%;
+  font-weight: bold;
+}
+
+.passenger-head-age{
+  margin: 0 9%;
+  font-weight: bold;
+}
+
+.passenger-num{
+  padding-left: 14%;
+}
+
+.passenger-name{
+  width: 50%;
+  height: 30px;
+  margin: 0 5%;
+}
+
+.passenger-age{
+  width: 10%;
+  height: 30px;
+  /* margin: 0 auto; */
+}
+
+/* PAYMENTS PAGE */
+.payment{
+  border: 3px solid black;
+  width: 30%;
+  margin-left: 35%;
+  padding: 20px 0;
+}
+
+/* TICKETS PAGE */
+.tickets{
+  border: 3px solid black;
+  width: 60%;
+  margin-left: 20%;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.tickets li{
+  margin-left: 8%;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+.ticket-table td{
+  border: 1px solid black;
+}
+/* .tickets li:last-child{
+  margin-left: 43%;
+} */
+
+@media only screen and (max-width: 1200px){
+  .form-control{
+    width: 30%;
+    margin: 20px 35%;
+  }
+  .booking-page{
+    width: 80%;
+    margin-left: 10%;
+  }
+  .booking-li{
+    padding-left: 10%;;
+  }
+  .passengers{
+    width: 50%;
+    margin-left: 25%;
+  }
+  .payment{
+    width: 50%;
+    margin-left: 25%;
+  }
+  .tickets{
+    width: 80%;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .flash{
+    width: 40%;
+    left: 30%;
+  }
+  .form-control{
+    width: 40%;
+    margin: 20px 30%;
+  }
+  .goBack{
+    margin: 0;
+  }
+  .btn-size{
+    width: 30%;
+    margin-left: 35%;
+    display: block;
+  }
+  .booking-page{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .booking-li{
+    padding-left: 5%;
+  }
+  .passengers{
+    width: 70%;
+    margin-left: 15%;
+  }
+  .payment{
+    width: 60%;
+    margin-left: 20%;
+  }
+  .tickets li{
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 600px){
+  .flash{
+    width: 60%;
+    left: 20%;
+  }
+  .mainContent{
+    top: 33%;
+  }
+  .main-h1{
+    font-size: 50px;
+  }
+  .main-p{
+    font-size: 18px;
+  }
+  .book-h1{
+    font-size: 35px;
+  }
+  .book{
+    font-size: 40px;
+  }
+  .custom-select{
+    width:80%;
+  }
+  #main-submit{
+    font-size: 20px;
+    width: 60%;
+  }
+  .form-control{
+    width: 60%;
+    margin: 20px 20%;
+  }
+  .btn-size{
+    width: 50%;
+    margin-left: 25%;
+  }
+  .booking-li{
+    font-size: 18px;
+  }
+  .passengers{
+    width: 80%;
+    margin-left: 10%;
+  }
+  .payment{
+    width: 70%;
+    margin-left: 15%;
+  }
+  .tickets{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .tickets li{
+    font-size: 17px;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .flash{
+    font-size: 15px;
+    width: 95%;
+    top: 25%;
+    left: 2.5%;
+  }
+  .main-h1{
+    font-size: 40px;
+  }
+  .form-control{
+    width: 80%;
+    margin: 20px 10%;
+  }
+  .btn-size{
+    width: 50%;
+    margin-left: 25%;
+  }
+  .tr:nth-of-type(n){
+    background-color: rgba(255, 255, 255);
+  }
+  .booking-li{
+    font-size: 15px;
+  }
+  .passengers{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .payment{
+    width: 90%;
+    margin-left: 5%;
+  }
+  .tickets{
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .tickets li{
+    font-size: 15px;
+  }
 }
 
 @media only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
-  .table td{
+  .table .td{
     border: none;
   }
 	/* Force table to not be like tables anymore */
@@ -104,16 +444,10 @@
 
   .td:nth-of-type(1):before { content: "PNR : "; }
 	.td:nth-of-type(2):before { content: "Train Name : "; }
-	.td:nth-of-type(3):before { content: "Depature : "; }
-	.td:nth-of-type(4):before { content: "Destination : "; }
-	.td:nth-of-type(5):before { content: "Depature Date : "; }
-	.td:nth-of-type(6):before { content: "Depature Time : "; }
-	.td:nth-of-type(7):before { content: "Arrival Date : "; }
-	.td:nth-of-type(8):before { content: "Arrival Time : "; }
-	.td:nth-of-type(9):before { content: "Cost : "; }
-  .td:nth-of-type(10):before { content: "Seats Available : "; }
-  
-  .btn{
-    width: 60%;
-  }
+	.td:nth-of-type(3):before { content: "From : "; }
+	.td:nth-of-type(4):before { content: "To : "; }
+	.td:nth-of-type(5):before { content: "Dep. : "; }
+	.td:nth-of-type(6):before { content: "Arr. : "; }
+	.td:nth-of-type(7):before { content: "Cost : "; }
+  .td:nth-of-type(8):before { content: "Seats Available : "; } 
 }

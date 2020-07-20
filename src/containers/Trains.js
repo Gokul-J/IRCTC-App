@@ -8,14 +8,15 @@ class Trains extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      trainList : []
+      trainList : [],
+      viewLogin: false
     }
   }
   
   handleClick(id, event){
     console.log(this.props.isAuthenticated);
     if(!this.props.isAuthenticated){
-      this.props.history.push("/login");
+      this.setState({viewLogin: !this.state.viewLogin})
     }
     else{
       this.props.history.push("/bookTickets", {id: id});
@@ -61,10 +62,8 @@ class Trains extends React.Component {
           <td className="td">{train.name}</td>
           <td className="td">{train.from}</td>
           <td className="td">{train.to}</td>
-          <td className="td">{(date < 10 ? '0' + date : date) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
-          <td className="td">{train.dTime}</td>
-          <td className="td">{(Number(date) + train.aDate) + "-" + (month < 10 ? '0' + month : month) + "-" + year}</td>
-          <td className="td">{train.aTime}</td>
+          <td className="td">{(date < 10 ? '0' + date : date) + "-" + (month < 10 ? '0' + month : month) + "-" + year}    {train.dTime}</td>
+          <td className="td">{(Number(date) + train.aDate) + "-" + (month < 10 ? '0' + month : month) + "-" + year}    {train.aTime}</td>
           <td className="td">₹ {train.cost}</td>
           <td className="td">{Math.floor(Math.random() * 1024)}/1024</td>
           <td className="td"><p className="btn btn-primary" onClick={this.handleClick.bind(this, train._id)}>Book</p></td>
@@ -72,21 +71,20 @@ class Trains extends React.Component {
       )
     })
     return (
-      <div className="text-center">
-        <Navbar />
-        <h1>Available Trains</h1>
+      <div className="text-center ">
+        <Navbar viewLogin={this.state.viewLogin}/>
+        <div className="train-container">
+        <h1 className="train-h1">TRAINS</h1>
         <table className="table train-table">
           <thead className="thead thead-dark">
             <tr className="tr">
               <th className="th" scope="col">#</th>
               <th className="th" scope="col">PNR</th>
               <th className="th" scope="col">Train Name</th>
+              <th className="th" scope="col">From</th>
+              <th className="th" scope="col">To</th>
               <th className="th" scope="col">Depature</th>
-              <th className="th" scope="col">Destination</th>
-              <th className="th" scope="col">Depature Date</th>
-              <th className="th" scope="col">Depature Time</th>
-              <th className="th" scope="col">Arrival Date</th>
-              <th className="th" scope="col">Arrival Time</th>
+              <th className="th" scope="col">Arrival</th>
               <th className="th" scope="col">Cost</th>
               <th className="th" scope="col">Seats Available</th>
               <th className="th" scope="Booking">Book Now</th>
@@ -96,6 +94,7 @@ class Trains extends React.Component {
             {table}
           </tbody>
         </table>
+        </div>
       </div>
     )
   }

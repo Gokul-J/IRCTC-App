@@ -15,7 +15,6 @@ export const registerUser = (userData, history) => dispatch => {
         payload: res.data
       })
     })
-    .then(() => history.push("/login"))
     .catch(err =>
       console.log(err)
     );

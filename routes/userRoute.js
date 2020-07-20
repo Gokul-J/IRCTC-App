@@ -8,7 +8,7 @@ Router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     // console.log(user);
     if (user) {
-      res.json({flashMessage: "User Exist. Try Log In"})
+      res.json({success:false, flashMessage: "User Already Exist"})
     }
     else {
       console.log("Creating New User");
@@ -23,7 +23,7 @@ Router.post("/register", (req, res) => {
           if (err) { console.log(err) };
           newUser.password = hash;
           newUser.save()
-            .then(() => res.json({ flashMessage: "Successfully Registered" }),)
+            .then(() => res.json({success:true, flashMessage: "Successfully Registered" }),)
             .catch(err => console.log(err));
         })
       })

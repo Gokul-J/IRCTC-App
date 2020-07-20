@@ -69,10 +69,11 @@ class Main extends React.Component {
       <div className="">
         <Navbar />
         <div className="main-image"></div>
-        <div className="row mainContent">
-          <div className=" mainForm col-md-6 order-2 order-md-1">
+        <div className=" mainContent">
+          <div className="row">
+          <div className=" mainForm col-lg-6 order-2 order-lg-1">
             <div className=" container text-center">
-              <h1><div className="book">Book</div> Your Ticket</h1>
+              <h1 className="book-h1"><div className="book">Book</div> Your Ticket</h1>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
@@ -98,13 +99,14 @@ class Main extends React.Component {
                   <label className="sr-only" htmlFor="date">Date</label>
                   <input type="date" id="date" name="date" defaultValue={this.state.date} onClick={this.fetchDate.bind(this)} onChange={this.handleChange} min={this.state.currDate} max={this.state.maxDate} required></input>
                 </div>
-                <input type="submit" className="btn btn-primary" />
+                <input id="main-submit" type="submit" className="btn btn-primary btn-lg" value="Search"/>
               </form>
             </div>
           </div>
-          <div className="mainText col-md-6 order-1 order-md-2">
+          <div className="mainText col-lg-6 order-1 order-lg-2">
             <h1 className="main-h1">Indian Railways</h1>
             <p className="main-p">Safety | Security | Punctuality</p>
+          </div>
           </div>
         </div>
       </div>

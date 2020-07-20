@@ -1,24 +1,52 @@
 import React from 'react';
+import Login from './Login';
+import Register from './Register';
 import * as authActions from '../actions/authActions';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
 class Navbar extends React.Component {
 
+  constructor(props){
+    super(props);
+    this.state = {
+      showLogin : false,
+      showSignup : false
+    }
+
+    this.toggleLogin = this.toggleLogin.bind(this);
+    this.toggleSignup = this.toggleSignup.bind(this);
+  }
+
   handleLogout(event) {
     this.props.logoutUser(this.props.history);
     event.preventDefault();
   }
 
+  toggleLogin(){
+    this.setState({showLogin: !this.state.showLogin, showSignup:false});
+  }
+
+  toggleSignup(){
+    this.setState({showSignup: !this.state.showSignup, showLogin:false});
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot){
+    // console.log(this.state)
+    // if(this.props.viewLogin!==p  revProps.viewLogin){
+    //   this.setState({showLogin: true})
+    // }
+  }
+
   render() {
-    const { isAuthenticated, flash, flashMessage } = this.props;
+    const { isAuthenticated, flash, flashMessage, success } = this.props;
 
     let view, flashMes;
     if (!isAuthenticated) {
       view =
         <div className="navbar-nav ml-auto">
-          <a className="nav-item mr-sm-3 nav-link" href="/login">Login</a>
-          <a className="nav-item mr-sm-3 nav-link" href="/register">SignUp</a>
+          <p className="nav-item mr-sm-3 nav-link" onClick={this.toggleLogin}>Login</p>
+          <p className="nav-item mr-sm-3 nav-link" onClick={this.toggleSignup}>SignUp</p>
         </div>
     }
     else {
@@ -29,15 +57,23 @@ class Navbar extends React.Component {
         </div>
     }
 
-    if(flash){
-      flashMes= <p>{flashMessage}</p>
-      // setTimeout(() => {
-      //   this.props.resetFlash();
-      // }, 5000);
+    if (flash) {
+      if (success) {
+        flashMes = <p className="flash text-center bg-success">{flashMessage}</p>
+        setTimeout(() => {
+          this.props.resetFlash();
+        }, 1000);
+      }
+      else {
+        flashMes = <p className="flash text-center bg-danger">{flashMessage}</p>
+        setTimeout(() => {
+          this.props.resetFlash();
+        }, 1000);
+      }
     }
     return (
       <div>
-      <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed">
+      <nav className="navbar navbar-expand-md navbar-dark bg-dark">
         <a className="navbar-brand" href="/">IRCTC</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
@@ -51,8 +87,10 @@ class Navbar extends React.Component {
             {view}
           </div>
         </div>
-      </nav>
-      {flashMes}
+        </nav>
+        {flashMes}
+        {this.state.showLogin ? <div className="popup"><Login showLogin={this.toggleLogin} showSignup={this.toggleSignup} /></div> : null}
+        {this.state.showSignup ? <div className="popup"><Register showLogin={this.toggleLogin} showSignup={this.toggleSignup} /></div> : null}
       </div>
     )
   }
@@ -63,7 +101,8 @@ const mapStateToProps = state => {
     user: state.auth.user,
     isAuthenticated: state.auth.isAuthenticated,
     flashMessage: state.auth.flashMessage,
-    flash: state.auth.flash
+    flash: state.auth.flash,
+    success: state.auth.success
   }
 }
 

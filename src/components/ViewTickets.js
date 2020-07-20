@@ -35,20 +35,19 @@ class ViewTickets extends React.Component {
         {tickets.map(ticket => {
         let count=1;
         return (
-          <div key={ticket._id} className="train-details">
+          <div key={ticket._id} className="tickets">
             <ul className="list-inline text-left">
               <div className="row">
-                <li className="list-inline-item col-5">PNR : {ticket.train.pnr}</li>
-                <li className="list-inline-item col-5">Name : {ticket.train.name}</li>
-                <li className="list-inline-item col-5">From : {ticket.train.from}</li>
-                <li className="list-inline-item col-5">To : {ticket.train.to}</li>
-                <li className="list-inline-item col-5">Depature Date : {ticket.dDate}</li>
-                <li className="list-inline-item col-5">Arrival Date : {ticket.aDate}</li>
-                <li className="list-inline-item col-5">Depature Time : {ticket.train.dTime}</li>
-                <li className="list-inline-item col-5">Arrival Time : {ticket.train.aTime}</li>
+                <li className="col-sm-5">PNR : {ticket.train.pnr}</li>
+                <li className="col-sm-5">Name : {ticket.train.name}</li>
+                <li className="col-sm-5">From : {ticket.train.from}</li>
+                <li className="col-sm-5">To : {ticket.train.to}</li>
+                <li className="col-sm-5">Depature Date : {ticket.dDate}    {ticket.train.dTime}</li>
+                <li className="col-sm-5">Arrival Date : {ticket.aDate}    {ticket.train.aTime}</li>
+                <li className="col-sm-5">No. of Tickets : {ticket.ticketCount} </li>
               </div>
             </ul>
-            <p>Passengers</p>
+            <h4>Passengers</h4>
             <div className="container">
             <table className="table">
               <thead className="thead-dark">
@@ -61,8 +60,8 @@ class ViewTickets extends React.Component {
               <tbody>
                 {ticket.passengers.map(passenger => {
                   return (
-                    <tr key={count}>
-                      <th scope="row">{count++}</th>
+                    <tr className="ticket-table" key={count}>
+                      <td>{count++}</td>
                       <td>{passenger.name}</td>
                       <td>{passenger.age}</td>
                     </tr>

@@ -29,7 +29,7 @@ passportConfig(passport);
 
 app.use("/api/user", userRoute);
 app.use("/api/trains",trainRoute);
-app.use("/api/ticket", passport.authenticate('jwt', {session: false}), ticketRoute);
+app.use("/api/ticket", ticketRoute);
 // trainDB();
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/build', 'index.html'));

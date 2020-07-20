@@ -1,6 +1,5 @@
 import React from 'react';
 import * as authActions from '../actions/authActions';
-import Navbar from '../components/Navbar';
 import { connect } from 'react-redux';
 
 class Login extends React.Component {
@@ -15,18 +14,12 @@ class Login extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    // If logged in and user navigates to Login page, should redirect them to dashboard
-    // console.log(this.props.isAuthenticated)
-    if (this.props.isAuthenticated) {
-      this.props.history.goBack();
-    }
+  hideLogin(){
+    this.props.showLogin(false);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isAuthenticated) {
-      this.props.history.goBack();
-    }
+  showSignup(){
+    this.props.showSignup(true);
   }
 
   handleChange(event) {
@@ -34,21 +27,32 @@ class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    // console.log(this.state);
     const { email, password } = this.state;
     this.props.loginUser({ email: email, password: password });
     event.preventDefault();
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot){
+    if(this.props.success===true){
+      console.log("update")
+      this.hideLogin();
+    }
+  }
+
   render() {
     return (
-      <div>
-        <Navbar />
-        <h1>Login Page</h1>
+      <div className="form text-center">
+        <h1>LOGIN</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type="email" placeholder="Email" name="email" onChange={this.handleChange} required />
-          <input type="password" placeholder="password" name="password" onChange={this.handleChange} required />
-          <input type="submit" className="btn btn-success" />
+          <div className="form-group">
+            <input className="form-control" type="email" placeholder="Email" name="email" onChange={this.handleChange} required />
+          </div>
+          <div className="form-group">
+            <input className="form-control" type="password" placeholder="password" name="password" onChange={this.handleChange} required />
+          </div>
+          <input type="submit" className="btn-size btn btn-success" />
+          <p className="btn-size goBack btn btn-success" onClick={this.hideLogin.bind(this)}>Go Back</p>
+          <p className="redirect">New User? <span onClick={this.showSignup.bind(this)}>SIGNUP</span></p>
         </form>
       </div>
     )
@@ -59,7 +63,8 @@ const mapStateToProps = state => {
   // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.auth.user
+    user: state.auth.user,
+    success: state.auth.success
   })
 }
 
