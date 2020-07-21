@@ -67,10 +67,10 @@ class Main extends React.Component {
 
   render() {
     let flashMessage;
-    if(this.state.flash){
-      flashMessage= <p className="flash text-center bg-danger">Depature and Destination cannot be Same</p>
+    if (this.state.flash) {
+      flashMessage = <p className="flash text-center bg-danger">Depature and Destination cannot be Same</p>
       setTimeout(() => {
-        this.setState({flash: false})
+        this.setState({ flash: false })
       }, 1000);
     }
     return (
@@ -80,43 +80,46 @@ class Main extends React.Component {
         <div className="main-image"></div>
         <div className=" mainContent">
           <div className="row">
-          <div className=" mainForm col-lg-6 order-2 order-lg-1">
-            <div className=" container text-center">
-              <h1 className="book-h1"><div className="global-h1">Book</div> Your Ticket</h1>
-              <form onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
-                  <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="from" value={this.state.from} onChange={this.handleChange} required>
-                    <option value="">FROM...</option>
-                    <option value="CHE">Chennai</option>
-                    <option value="MUM">Mumbai</option>
-                    <option value="DEL">Delhi</option>
-                    <option value="KOL">Kolkata</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
-                  <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="to" value={this.state.to} onChange={this.handleChange} required>
-                    <option value="">TO...</option>
-                    <option value="CHE">Chennai</option>
-                    <option value="MUM">Mumbai</option>
-                    <option value="DEL">Delhi</option>
-                    <option value="KOL">Kolkata</option>
-                  </select>
-                </div>
-                <div className="form-group">
-                  <label className="sr-only" htmlFor="date">Date</label>
-                  <input type="date" id="date" name="date" defaultValue={this.state.date} onClick={this.fetchDate.bind(this)} onChange={this.handleChange} min={this.state.currDate} max={this.state.maxDate} required></input>
-                </div>
-                <input id="main-submit" type="submit" className="btn btn-primary btn-lg" value="Search"/>
-              </form>
+            <div className=" mainForm col-lg-6 order-2 order-lg-1">
+              <div className=" container text-center">
+                <h1 className="book-h1"><div className="global-h1">Book</div> Your Ticket</h1>
+                <form onSubmit={this.handleSubmit}>
+                  <div className="form-group">
+                    <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
+                    <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="from" value={this.state.from} onChange={this.handleChange} required>
+                      <option value="">FROM...</option>
+                      <option value="CHE">Chennai</option>
+                      <option value="MUM">Mumbai</option>
+                      <option value="DEL">Delhi</option>
+                      <option value="KOL">Kolkata</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
+                    <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="to" value={this.state.to} onChange={this.handleChange} required>
+                      <option value="">TO...</option>
+                      <option value="CHE">Chennai</option>
+                      <option value="MUM">Mumbai</option>
+                      <option value="DEL">Delhi</option>
+                      <option value="KOL">Kolkata</option>
+                    </select>
+                  </div>
+                  <div className="form-group">
+                    <label className="sr-only" htmlFor="date">Date</label>
+                    <input type="date" id="date" name="date" defaultValue={this.state.date} onClick={this.fetchDate.bind(this)} onChange={this.handleChange} min={this.state.currDate} max={this.state.maxDate} required></input>
+                  </div>
+                  <input id="main-submit" type="submit" className="btn btn-primary btn-lg" value="Search" />
+                </form>
+              </div>
+            </div>
+            <div className="mainText col-lg-6 order-1 order-lg-2">
+              <h1 className="main-h1">Indian Railways</h1>
+              <p className="main-p">Safety | Security | Punctuality</p>
             </div>
           </div>
-          <div className="mainText col-lg-6 order-1 order-lg-2">
-            <h1 className="main-h1">Indian Railways</h1>
-            <p className="main-p">Safety | Security | Punctuality</p>
-          </div>
-          </div>
+          <nav className="navbar navbar-expand-lg navbar-light fixed-bottom" style={{backgroundColor: "rgba(110, 107, 107, 0.3)"}}>
+            <a className="navbar-brand mx-auto" href="https://github.com/Gokul-J/IRCTC-App" rel="noopener noreferrer" target="_blank"><i className="fab fa-github" style={{fontSize: "2em"}}></i></a>
+          </nav>
         </div>
       </div>
     )
