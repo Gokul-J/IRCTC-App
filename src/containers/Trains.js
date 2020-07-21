@@ -46,7 +46,7 @@ class Trains extends React.Component {
     let table = [];
     let view;
     if(trainList.length === 0){
-      view = <p>No Trains Available</p>
+      view = <p>Loading..... Please Wait</p>
     }
     else{
       view = <table className="table train-table">

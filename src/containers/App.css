@@ -33,7 +33,7 @@
 }
 
 .toggle-link{
-  color: rgb(54, 54, 223);
+  color: rgb(231, 148, 54);
   text-decoration: underline;
   background: transparent;
   border: none;
@@ -125,7 +125,8 @@
 }
 
 .redirect{
-  margin-top: 20px;
+  font-size: 18px;
+  margin-top: 15px;
 }
 
 .btn-size{
@@ -400,7 +401,7 @@
   .flash{
     font-size: 15px;
     width: 95%;
-    top: 25%;
+    top: 10%;
     left: 2.5%;
   }
   .main-h1{
