@@ -6,12 +6,10 @@ const express = require("express"),
 
 Router.post("/register", (req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
-    // console.log(user);
     if (user) {
       res.json({success:false, flashMessage: "User Already Exist"})
     }
     else {
-      console.log("Creating New User");
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
@@ -32,9 +30,7 @@ Router.post("/register", (req, res) => {
 })
 
 Router.post("/login", (req, res) => {
-  console.log("Login")
   User.findOne({ email: req.body.email }, (err, user) => {
-    // console.log(user.id);
     if (!user) {
       res.json({success: false, flashMessage: "Invalid Username or Password"})
     }

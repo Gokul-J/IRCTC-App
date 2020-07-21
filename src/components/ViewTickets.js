@@ -15,7 +15,6 @@ class ViewTickets extends React.Component {
       const userId = this.props.user.id;
       axios.get("/api/ticket/" + userId)
         .then(res => {
-          console.log(res.data);
           this.setState({ tickets: res.data});
         })
     }
@@ -25,7 +24,6 @@ class ViewTickets extends React.Component {
   }
 
   render() {
-    // console.log(this.state.tickets);
     const { tickets } = this.state;
     if(tickets.length ===0 ){
       return <p>No Tickets Booked</p>
@@ -79,7 +77,6 @@ class ViewTickets extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user

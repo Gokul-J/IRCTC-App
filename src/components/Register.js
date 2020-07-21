@@ -28,7 +28,6 @@ class Register extends React.Component {
   }
 
   handleSubmit(event) {
-    // console.log(this.state);
     const { name, email, password } = this.state;
     this.props.registerUser({ name: name, email: email, password: password }, this.props.history);
     event.preventDefault();
@@ -66,7 +65,6 @@ class Register extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,

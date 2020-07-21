@@ -31,11 +31,7 @@ class Main extends React.Component {
       let Indate = new Date(date);
       let dd = Indate.getDate();
       let mm = Indate.getMonth() + 1;
-      // if(mm<10){
-      //   mm='0'+mm;
-      // }
       let yyyy = Indate.getFullYear();
-      // console.log(dd+""+mm+""+yyyy)
       localStorage.setItem("date", dd);
       localStorage.setItem("month", mm);
       localStorage.setItem("year", yyyy);
@@ -46,7 +42,6 @@ class Main extends React.Component {
 
   fetchDate() {
     let date = new Date()
-    // console.log(date)
     let dd = date.getDate() + 1;
     let mm = date.getMonth() + 1;
     let yyyy = date.getFullYear();

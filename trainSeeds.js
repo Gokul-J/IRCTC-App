@@ -171,7 +171,7 @@ const trains = [
     dTime: "12:00",
     aTime: "07:00",
     aDate: 1,
-    name: "Sealdah NEW Delhi Premium Special",
+    name: "Delhi Premium Special",
     cost: 2000
   },
   {
@@ -191,7 +191,7 @@ const trains = [
     dTime: "12:00",
     aTime: "07:00",
     aDate: 1,
-    name: "Sealdah NEW Delhi Premium Special",
+    name: "Delhi Premium Special",
     cost: 2000
   },
   {
@@ -204,6 +204,26 @@ const trains = [
     name: "Kolkata Rajdhani",
     cost: 4000
   },
+  {
+    pnr: Math.floor(Math.random()*10000000000),
+    from: "MUM",
+    to: "KOL",
+    dTime: "08:00",
+    aTime: "14:00",
+    aDate: 1,
+    name: "Gitanjali Express",
+    cost: 2200
+  },
+  {
+    pnr: Math.floor(Math.random()*10000000000),
+    from: "MUM",
+    to: "KOL",
+    dTime: "22:00",
+    aTime: "04:00",
+    aDate: 1,
+    name: "Karmabhoomi Express",
+    cost: 4400
+  }
 ]
 
 function trainDB() {

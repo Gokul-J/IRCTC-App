@@ -14,7 +14,6 @@ class Trains extends React.Component {
   }
   
   handleClick(id, event){
-    // console.log(this.props.isAuthenticated);
     if(!this.props.isAuthenticated){
       this.setState({viewLogin: !this.state.viewLogin})
     }
@@ -109,7 +108,6 @@ class Trains extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return{
       isAuthenticated: state.auth.isAuthenticated
   }

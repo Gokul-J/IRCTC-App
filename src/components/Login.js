@@ -34,7 +34,6 @@ class Login extends React.Component {
 
   componentDidUpdate(prevProps, prevState, snapshot){
     if(this.props.success===true){
-      console.log("update")
       this.hideLogin();
     }
   }
@@ -60,7 +59,6 @@ class Login extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,

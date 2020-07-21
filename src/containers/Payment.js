@@ -10,9 +10,7 @@ class Payment extends React.Component {
     }
     this.state = {
       ...this.props.location.state.state,
-      // userId: this.props.user.id
     };
-    console.log(this.state);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -65,7 +63,6 @@ class Payment extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user

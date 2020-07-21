@@ -43,7 +43,6 @@ class Tickets extends React.Component {
 }
 
 const mapStateToProps = state => {
-  // console.log(state);
   return ({
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user

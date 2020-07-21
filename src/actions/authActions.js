@@ -9,7 +9,6 @@ export const registerUser = (userData, history) => dispatch => {
   axios
     .post("/api/user/register", userData)
     .then(res => {
-      // console.log(res)
       dispatch({
         type: actionTypes.SET_FLASH_MESSAGE,
         payload: res.data

@@ -6,7 +6,6 @@ const express = require("express"),
   User = require("../models/user");
 
 Router.post("/create", (req, res) => {
-  console.log(req.body);
   const newTicket = new Ticket({
     user: req.body.user,
     train: req.body.train._id,
@@ -23,20 +22,17 @@ Router.post("/create", (req, res) => {
       console.log(err);
     }
     else {
-      console.log(ticket);
       User.findById(req.body.user, (err, foundUser) => {
         if (err) {
           console.log(err);
         }
         else {
-          console.log(foundUser);
           foundUser.tickets.push(ticket.id);
           foundUser.save((err, user) => {
             if (err) {
               console.log(err);
             }
             else {
-              console.log(user);
               res.send({flashMessage: "Payment Successful"})
             }
           })
@@ -44,7 +40,6 @@ Router.post("/create", (req, res) => {
       })
     }
   })
-  console.log("ID : " + req.body.userId);
 })
 
 Router.get("/:id", (req, res) => {

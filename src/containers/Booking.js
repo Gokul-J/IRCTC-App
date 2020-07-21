@@ -26,10 +26,8 @@ class Booking extends React.Component {
   handleSubmit(event) {
     const { ticketCount, passengers } = this.state;
     const divs = event.target.childNodes;
-    // console.log(divs);
     for (let i = 0; i < ticketCount; i++) {
       let pass = divs[i].childNodes
-      // console.log(pass);
       const details = {};
       pass.forEach(passenger => {
         if (passenger.tagName === 'INPUT') {
@@ -39,8 +37,6 @@ class Booking extends React.Component {
       })
       passengers.push(details);
     }
-    console.log(this.state);
-    // console.log(passengers);
     this.props.history.push("/payment", { state: this.state })
     event.preventDefault();
   }

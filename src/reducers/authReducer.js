@@ -25,7 +25,6 @@ export default function (state = initialState, action) {
         loading: true
       }
     case actionTypes.SET_FLASH_MESSAGE :
-      console.log(action);
       if(action.payload.success){
         return{
           ...state,
