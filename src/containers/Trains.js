@@ -44,6 +44,31 @@ class Trains extends React.Component {
     let month = localStorage.month;
     let year = localStorage.year;
     let table = [];
+    let view;
+    if(trainList.length === 0){
+      view = <p>No Trains Available</p>
+    }
+    else{
+      view = <table className="table train-table">
+      <thead className="thead thead-dark">
+        <tr className="tr">
+          <th className="th" scope="col">#</th>
+          <th className="th" scope="col">PNR</th>
+          <th className="th" scope="col">Train Name</th>
+          <th className="th" scope="col">From</th>
+          <th className="th" scope="col">To</th>
+          <th className="th" scope="col">Depature</th>
+          <th className="th" scope="col">Arrival</th>
+          <th className="th" scope="col">Cost</th>
+          <th className="th" scope="col">Seats Available</th>
+          <th className="th" scope="Booking">Book Now</th>
+        </tr>
+      </thead>
+      <tbody className="tbody">
+        {table}
+      </tbody>
+    </table>
+    }
     trainList.forEach(train => {
       if (date > 30) {
         date = 1;
@@ -74,26 +99,9 @@ class Trains extends React.Component {
       <div className="text-center ">
         <Navbar viewLogin={this.state.viewLogin}/>
         <div className="train-container">
-        <h1 className="train-h1">TRAINS</h1>
-        <table className="table train-table">
-          <thead className="thead thead-dark">
-            <tr className="tr">
-              <th className="th" scope="col">#</th>
-              <th className="th" scope="col">PNR</th>
-              <th className="th" scope="col">Train Name</th>
-              <th className="th" scope="col">From</th>
-              <th className="th" scope="col">To</th>
-              <th className="th" scope="col">Depature</th>
-              <th className="th" scope="col">Arrival</th>
-              <th className="th" scope="col">Cost</th>
-              <th className="th" scope="col">Seats Available</th>
-              <th className="th" scope="Booking">Book Now</th>
-            </tr>
-          </thead>
-          <tbody className="tbody">
-            {table}
-          </tbody>
-        </table>
+        <h1 className="global-h1 train-h1">TRAINS</h1>
+        {view}
+        
         </div>
       </div>
     )

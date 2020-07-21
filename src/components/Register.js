@@ -56,9 +56,9 @@ class Register extends React.Component {
           <div className="form-group">
             <input className="form-control" type="password" placeholder="password" name="password" onChange={this.handleChange} required />
           </div>
-          <input type="submit" className="btn-size btn btn-success" />
+          <input type="submit" className="btn-size btn btn-success" value="SignUp"/>
           <p className="btn-size goBack btn btn-success" onClick={this.hideSignup.bind(this)}>Go Back</p>
-          <p className="redirect">Existing User? <span onClick={this.showLogin.bind(this)}>LOGIN</span></p>
+          <p className="redirect">Existing User? <button className="toggle-link" onClick={this.showLogin.bind(this)}>LOGIN</button></p>
         </form>
       </div>
     )

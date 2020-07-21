@@ -29,7 +29,7 @@ class Payment extends React.Component {
     return (
       <div className="">
         <div className="">
-          <h1 className="text-center">Payments Page</h1>
+          <h1 className="global-h1 text-center">PAYMENT</h1>
           {/* <p>This is Demo Payment PAGE</p> */}
           <div className="payment">
             <form>

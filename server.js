@@ -39,10 +39,10 @@ app.get('*', (req, res) => {
 
 
 //SCHEDULE FUNCTION FOR TICKETS EXPIRY
-const deleteTickets = schedule.scheduleJob("0 0 * * *", ()=> {
+const deleteTickets = schedule.scheduleJob("36 0 * * *", ()=> {
   console.log("Schedule is Called...")
   const date = new Date()
-  let dd = date.getDate()+1;
+  let dd = date.getDate();
   let mm = date.getMonth() + 1;
   if(dd<10){
     dd = '0'+dd;
@@ -64,7 +64,7 @@ const deleteTickets = schedule.scheduleJob("0 0 * * *", ()=> {
             console.log(err);
           }
           else {
-            console.log(delTicket);
+            console.log("delTicket");
             User.updateOne({ _id: ticket.user }, { $pull: { tickets: { $in: ticket._id } } }, (err, user) => {
               if (err) {
                 console.log(err);

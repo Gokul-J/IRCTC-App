@@ -8,7 +8,6 @@ import Trains from './containers/Trains';
 import Booking from './containers/Booking';
 import Payment from './containers/Payment';
 import Tickets from './containers/Tickets';
-import User from './containers/User';
 import * as serviceWorker from './serviceWorker';
 import authReducer from './reducers/authReducer';
 import { Provider} from 'react-redux';
@@ -49,7 +48,6 @@ ReactDOM.render(
       <Router>
         <Switch>
           <Route exact path='/' component={Main} />
-          <Route path='/user' component={User} />
           <Route path='/trains' component={Trains} />
           <Route path='/bookTickets' component={Booking} />
           <Route path='/viewTickets' component={Tickets} />

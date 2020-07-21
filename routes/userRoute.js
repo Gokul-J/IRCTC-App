@@ -32,6 +32,7 @@ Router.post("/register", (req, res) => {
 })
 
 Router.post("/login", (req, res) => {
+  console.log("Login")
   User.findOne({ email: req.body.email }, (err, user) => {
     // console.log(user.id);
     if (!user) {

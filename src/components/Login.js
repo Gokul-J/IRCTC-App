@@ -50,9 +50,9 @@ class Login extends React.Component {
           <div className="form-group">
             <input className="form-control" type="password" placeholder="password" name="password" onChange={this.handleChange} required />
           </div>
-          <input type="submit" className="btn-size btn btn-success" />
+          <input type="submit" className="btn-size btn btn-success" value="Login" />
           <p className="btn-size goBack btn btn-success" onClick={this.hideLogin.bind(this)}>Go Back</p>
-          <p className="redirect">New User? <span onClick={this.showSignup.bind(this)}>SIGNUP</span></p>
+          <p className="redirect">New User? <button className="toggle-link" onClick={this.showSignup.bind(this)}>SIGNUP</button></p>
         </form>
       </div>
     )

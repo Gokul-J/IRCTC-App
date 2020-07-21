@@ -95,17 +95,18 @@ class Booking extends React.Component {
     return (
       <div>
         <Navbar />
-        <div className="booking text-center">
-          <h1> Bookings Page</h1>
+        <div className="book-content">
+          <h1 className="global-h1 text-center">TICKET BOOKING</h1>
+          <div className="booking text-center">
           <div className="booking-page">
             <div className="text-left">
               <div className="row">
-                <p className="booking-li col-6">PNR : {train.pnr}</p>
-                <p className="booking-li col-6">Name : {train.name}</p>
-                <p className="booking-li col-6">From : {train.from}</p>
-                <p className="booking-li col-6">To : {train.to}</p>
-                <p className="booking-li col-6">Depature : {this.state.dDate}    {train.dTime}</p>
-                <p className="booking-li col-6">Arrival Date : {this.state.aDate}    {train.aTime}</p>
+                <p className="booking-li col-sm-6">PNR : {train.pnr}</p>
+                <p className="booking-li col-sm-6">Name : {train.name}</p>
+                <p className="booking-li col-sm-6">From : {train.from}</p>
+                <p className="booking-li col-sm-6">To : {train.to}</p>
+                <p className="booking-li col-sm-6">Depature : {this.state.dDate}    {train.dTime}</p>
+                <p className="booking-li col-sm-6">Arrival Date : {this.state.aDate}    {train.aTime}</p>
                 {/* <li className="ml-5 col-12">Cost : {train.cost}</li> */}
               </div>
             </div>
@@ -122,19 +123,20 @@ class Booking extends React.Component {
               <option value="9">9</option>
               <option value="10">10</option>
             </select>
-            <div> Cost: {this.state.ticketCount * train.cost}</div>
+            <div className="my-3"> Cost: {this.state.ticketCount * train.cost}</div>
           </div>
           <div className="">
-            <p>Passenger Details</p>
+            <h4>Passenger Details</h4>
             <div className="passengers text-left">
               <span className=" passenger-head-num">#</span>
               <span className=" passenger-head-name">Name</span>
               <span className=" passenger-head-age">Age</span>
               <form onSubmit={this.handleSubmit.bind(this)}>
                 {input}
-                <input type="submit" className="btn btn-primary btn-size" />
+                <input type="submit" className="btn btn-primary btn-book btn-size" />
               </form>
             </div>
+          </div>
           </div>
         </div>
       </div>

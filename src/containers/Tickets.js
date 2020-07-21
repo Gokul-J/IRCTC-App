@@ -33,8 +33,8 @@ class Tickets extends React.Component {
       <div>
         <Navbar />
         {flashMessage}
-        <div className="text-center">
-          <h1 className="my-4">Tickets Page</h1>
+        <div className="tickets-content text-center">
+          <h1 className="global-h1 my-4">TICKETS</h1>
           <ViewTickets {...this.props}/>
         </div>
       </div>

@@ -10,7 +10,8 @@ class Main extends React.Component {
       to: "",
       date: "",
       currDate: "",
-      maxDate: ""
+      maxDate: "",
+      flash: false
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -23,18 +24,23 @@ class Main extends React.Component {
 
   handleSubmit(event) {
     const { from, to, date } = this.state;
-    let Indate = new Date(date);
-    let dd = Indate.getDate();
-    let mm = Indate.getMonth() + 1;
-    // if(mm<10){
-    //   mm='0'+mm;
-    // }
-    let yyyy = Indate.getFullYear();
-    // console.log(dd+""+mm+""+yyyy)
-    localStorage.setItem("date", dd);
-    localStorage.setItem("month", mm);
-    localStorage.setItem("year", yyyy);
-    this.props.history.push("/trains", { from: from, to: to, view: true })
+    if (from === to) {
+      this.setState({ flash: true })
+    }
+    else {
+      let Indate = new Date(date);
+      let dd = Indate.getDate();
+      let mm = Indate.getMonth() + 1;
+      // if(mm<10){
+      //   mm='0'+mm;
+      // }
+      let yyyy = Indate.getFullYear();
+      // console.log(dd+""+mm+""+yyyy)
+      localStorage.setItem("date", dd);
+      localStorage.setItem("month", mm);
+      localStorage.setItem("year", yyyy);
+      this.props.history.push("/trains", { from: from, to: to, view: true })
+    }
     event.preventDefault();
   }
 
@@ -65,15 +71,23 @@ class Main extends React.Component {
   }
 
   render() {
+    let flashMessage;
+    if(this.state.flash){
+      flashMessage= <p className="flash text-center bg-danger">Depature and Destination cannot be Same</p>
+      setTimeout(() => {
+        this.setState({flash: false})
+      }, 1000);
+    }
     return (
-      <div className="">
+      <div>
         <Navbar />
+        {flashMessage}
         <div className="main-image"></div>
         <div className=" mainContent">
           <div className="row">
           <div className=" mainForm col-lg-6 order-2 order-lg-1">
             <div className=" container text-center">
-              <h1 className="book-h1"><div className="book">Book</div> Your Ticket</h1>
+              <h1 className="book-h1"><div className="global-h1">Book</div> Your Ticket</h1>
               <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label className="mr-sm-2 sr-only" htmlFor="inlineFormCustomSelect">Preference</label>
