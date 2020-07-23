@@ -1,5 +1,3 @@
-const { modelName } = require("../models/ticket");
-
 const express = require("express"),
   Router = express.Router(),
   Ticket = require("../models/ticket"),
