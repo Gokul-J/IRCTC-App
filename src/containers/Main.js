@@ -117,9 +117,9 @@ class Main extends React.Component {
               <p className="main-p">Safety | Security | Punctuality</p>
             </div>
           </div>
-          <nav className="navbar navbar-expand-lg navbar-light fixed-bottom" style={{backgroundColor: "rgba(110, 107, 107, 0.3)"}}>
-            <a className="navbar-brand mx-auto" href="https://github.com/Gokul-J/IRCTC-App" rel="noopener noreferrer" target="_blank"><i className="fab fa-github" style={{fontSize: "2em"}}></i></a>
-          </nav>
+          {/* <nav className="navbar navbar-expand-lg navbar-light fixed-bottom" style={{backgroundColor: "rgba(110, 107, 107, 0.3)"}}>
+            <a className="navbar-brand mx-auto" href="https://github.com/Gokul-J/IRCTC-App" rel="noopener noreferrer" target="_blank"><i className="fab fa-github" style={{fontSize: "1.5em", color: "white"}}></i></a>
+          </nav> */}
         </div>
       </div>
     )
