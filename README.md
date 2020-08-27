@@ -2,6 +2,8 @@
 
 This is a Demo Railway Ticket Booking Platform using MERN...
 
+Persistent User Authentication has been implemented using JWT.
+
 To Run the App locally, follow the steps;
 
 ### Requirements:
